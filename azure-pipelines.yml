@@ -1,0 +1,19 @@
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x' # Use the latest Python 3 version
+
+- script: |
+    pip install python-telegram-bot
+  displayName: Install required packages
+
+- script: |
+    chmod +x ./ultra  # Make the ultra file executable
+    python ultra.py
+  displayName: Run the Telegram bot
